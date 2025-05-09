@@ -36,18 +36,15 @@ document.addEventListener('DOMContentLoaded', function() {
     // チェックボックスの選択数を監視
     let checkedCount = 0;
     checkboxes.forEach(checkbox => {
-    checkbox.addEventListener('click', function (e) {
+    checkbox.addEventListener('change', function (e) {
         const currentlyChecked = document.querySelectorAll('input[type="checkbox"]:checked').length;
 
-        if (!this.checked && currentlyChecked >= 5) {
-            // まだチェックしてない状態で5つ選択済 → 選ばせない＆警告
-            e.preventDefault(); // チェックが入るのを阻止
+        if (this.checked && currentlyChecked > 5) {
+            // 6個目がチェックされようとしたとき → 外してアラート
+            this.checked = false;
             alert('※チェックは5個までです');
+            return;
         }
-    });
-
-    checkbox.addEventListener('change', function () {
-        const currentlyChecked = document.querySelectorAll('input[type="checkbox"]:checked').length;
 
         // 選択数の表示を更新
         checkedCountDisplay.textContent = currentlyChecked;
@@ -56,7 +53,6 @@ document.addEventListener('DOMContentLoaded', function() {
         diagnosisButton.disabled = currentlyChecked === 0;
     });
 });
-
 
     // 診断ボタンのクリックイベント
     form.addEventListener('submit', function(e) {
