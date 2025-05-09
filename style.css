@@ -232,3 +232,20 @@ footer {
         gap: 15px;
     }
 }
+
+/* ページ切り替え用のスタイル */
+.page {
+  display: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.page.active {
+  display: block;
+  opacity: 1;
+}
+
+/* 必要に応じて結果コンテナのスタイル調整 */
+.result-container {
+  margin-top: 30px;
+}
