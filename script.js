@@ -1,18 +1,17 @@
 document.addEventListener('DOMContentLoaded', function() {
     // 要素の取得（順番が大事！）
-    const form = document.getElementById('diagnosis-form');
-    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-    const checkedCountDisplay = document.getElementById('checked-count'); // ← ここが必要！
-    const diagnosisButton = document.getElementById('diagnosis-button');
-    const resultContainer = document.getElementById('result-container');
-    const resultType = document.getElementById('result-type');
-    const resultDescription = document.getElementById('result-description');
-    const retryButton = document.getElementById('retry-button');
-
+const form = document.getElementById('diagnosis-form');
+const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+const checkedCountDisplay = document.getElementById('checked-count'); // ← ここが必要！
+const selectionStatus = document.getElementById('selection-status'); // 追加：selection-status 要素の取得
+const diagnosisButton = document.getElementById('diagnosis-button');
+const resultContainer = document.getElementById('result-container');
+const resultType = document.getElementById('result-type');
+const resultDescription = document.getElementById('result-description');
+const retryButton = document.getElementById('retry-button');
+    
     // ✅ 初期表示「0/5 選択中」
-    - checkedCountDisplay.textContent = currentlyChecked;
-　　+ checkedCountDisplay.textContent = `${currentlyChecked}/5 選択中`;
-
+    selectionStatus.textContent = "0/5 選択中";
 
     // 診断結果のデータ
     const resultData = {
@@ -39,8 +38,8 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     // チェックボックスの選択数を監視
-    let checkedCount = 0;
-    checkboxes.forEach(checkbox => {
+let checkedCount = 0;
+checkboxes.forEach(checkbox => {
     checkbox.addEventListener('change', function (e) {
         const currentlyChecked = document.querySelectorAll('input[type="checkbox"]:checked').length;
 
@@ -53,6 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // 選択数の表示を更新
         checkedCountDisplay.textContent = currentlyChecked;
+        selectionStatus.textContent = currentlyChecked + "/5 選択中"; // 追加：選択状態の更新
 
         // 診断ボタンの有効／無効切り替え
         diagnosisButton.disabled = currentlyChecked === 0;
@@ -121,30 +121,31 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // もう一度診断するボタンのイベント
-    retryButton.addEventListener('click', function() {
-        // チェックボックスをすべて解除
-        checkboxes.forEach(checkbox => {
-            checkbox.checked = false;
-            checkbox.disabled = false;
-        });
-        
-        // カウンターをリセット
-        checkedCount = 0;
-        checkedCountDisplay.textContent = '0/5 選択中';
-        
-        // 診断ボタンを無効化
-        diagnosisButton.disabled = true;
-        
-        // 結果を非表示
-        resultContainer.classList.add('hidden');
-        
-        // フォームにスクロール
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
+retryButton.addEventListener('click', function() {
+    // チェックボックスをすべて解除
+    checkboxes.forEach(checkbox => {
+        checkbox.checked = false;
+        checkbox.disabled = false;
     });
-
+    
+    // カウンターをリセット
+    checkedCount = 0;
+    checkedCountDisplay.textContent = '0';
+    selectionStatus.textContent = '0/5 選択中'; // 修正：既に正しい形式になっていますが、明示的に記述
+    
+    // 診断ボタンを無効化
+    diagnosisButton.disabled = true;
+    
+    // 結果を非表示
+    resultContainer.classList.add('hidden');
+    
+    // フォームにスクロール
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
+    
     // 初期状態では診断ボタンを無効化
     diagnosisButton.disabled = true;
 });
