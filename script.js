@@ -105,6 +105,19 @@ document.addEventListener('DOMContentLoaded', function() {
             maxType = tiedTypes[Math.floor(Math.random() * tiedTypes.length)];
         }
 
+        // 画像の表示処理
+    const existingImage = document.querySelector('.result-image');
+    if (existingImage) {
+        existingImage.remove(); // 前回表示の画像があれば削除
+    }
+
+    const resultImage = document.createElement('img');
+    resultImage.src = resultData[maxType].image;
+    resultImage.alt = resultData[maxType].title;
+    resultImage.classList.add('result-image');
+
+    resultType.after(resultImage); // タイトルの直後に画像を挿入
+
         // 結果を表示
         resultType.textContent = resultData[maxType].title;
         resultDescription.textContent = resultData[maxType].description;
