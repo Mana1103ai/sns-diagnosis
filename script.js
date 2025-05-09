@@ -64,9 +64,9 @@ checkboxes.forEach(checkbox => {
     });
 });
 
-    // 診断ボタンのクリックイベント
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
+    // 診断ボタンのクリックイベントで
+document.getElementById('diagnosis-page').classList.remove('active');
+document.getElementById('result-page').classList.add('active');
         
         // 各タイプのスコアを集計
         const scores = {
@@ -125,8 +125,10 @@ checkboxes.forEach(checkbox => {
         }, 100);
     });
 
-    // もう一度診断するボタンのイベント
-retryButton.addEventListener('click', function() {
+    // 「もう一度診断する」ボタンのイベントで
+document.getElementById('result-page').classList.remove('active');
+document.getElementById('diagnosis-page').classList.add('active');
+
     // チェックボックスをすべて解除
     checkboxes.forEach(checkbox => {
         checkbox.checked = false;
