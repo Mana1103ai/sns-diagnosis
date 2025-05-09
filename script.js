@@ -41,7 +41,9 @@ const retryButton = document.getElementById('retry-button');
 let checkedCount = 0;
 checkboxes.forEach(checkbox => {
     checkbox.addEventListener('change', function (e) {
+        // 明示的にDOMから選択されたチェックボックスの数を数える
         const currentlyChecked = document.querySelectorAll('input[type="checkbox"]:checked').length;
+        console.log("チェック数:", currentlyChecked); // デバッグ用
 
         if (this.checked && currentlyChecked > 5) {
             // 6個目がチェックされようとしたとき → 外してアラート
@@ -50,10 +52,13 @@ checkboxes.forEach(checkbox => {
             return;
         }
 
-        // 選択数の表示を更新
-        checkedCountDisplay.textContent = currentlyChecked;
-        selectionStatus.textContent = currentlyChecked + "/5 選択中"; // 追加：選択状態の更新
-
+        // 選択数の表示を更新 - より明示的に
+        if (selectionStatus) {
+            selectionStatus.textContent = currentlyChecked + "/5 選択中";
+            console.log("更新:", selectionStatus.textContent); // デバッグ用
+        } else {
+            console.error("selection-status要素が見つかりません");
+        }
         // 診断ボタンの有効／無効切り替え
         diagnosisButton.disabled = currentlyChecked === 0;
     });
