@@ -1,13 +1,16 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // 要素の取得
+    // 要素の取得（順番が大事！）
     const form = document.getElementById('diagnosis-form');
     const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-    const checkedCountDisplay = document.getElementById('checked-count');
+    const checkedCountDisplay = document.getElementById('checked-count'); // ← ここが必要！
     const diagnosisButton = document.getElementById('diagnosis-button');
     const resultContainer = document.getElementById('result-container');
     const resultType = document.getElementById('result-type');
     const resultDescription = document.getElementById('result-description');
     const retryButton = document.getElementById('retry-button');
+
+    // ✅ 初期表示「0/5 選択中」
+    checkedCountDisplay.textContent = '0/5 選択中';
 
     // 診断結果のデータ
     const resultData = {
@@ -125,7 +128,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // カウンターをリセット
         checkedCount = 0;
-        checkedCountDisplay.textContent = '0';
+        checkedCountDisplay.textContent = '0/5 選択中';
         
         // 診断ボタンを無効化
         diagnosisButton.disabled = true;
