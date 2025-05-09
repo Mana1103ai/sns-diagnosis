@@ -1,18 +1,16 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // 要素の取得（順番が大事！）
-const form = document.getElementById('diagnosis-form');
-const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-const checkedCountDisplay = document.getElementById('checked-count'); // ← ここが必要！
-const selectionStatus = document.getElementById('selection-status'); // 追加：selection-status 要素の取得
-const diagnosisButton = document.getElementById('diagnosis-button');
-const resultContainer = document.getElementById('result-container');
-const resultType = document.getElementById('result-type');
-const resultDescription = document.getElementById('result-description');
-const retryButton = document.getElementById('retry-button');
-    
-    // ✅ 初期表示「0/5 選択中」
-    selectionStatus.textContent = "0/5 選択中";
+    // 要素の取得
+    const form = document.getElementById('diagnosis-form');
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    const selectionStatus = document.getElementById('selection-status');
+    const diagnosisButton = document.getElementById('diagnosis-button');
+    const resultType = document.getElementById('result-type');
+    const resultDescription = document.getElementById('result-description');
+    const retryButton = document.getElementById('retry-button');
 
+    // 初期値を設定
+    selectionStatus.textContent = "0/5 選択中";
+    
     // 診断結果のデータ
     const resultData = {
         positive: {
@@ -25,48 +23,48 @@ const retryButton = document.getElementById('retry-button');
         },
         organizer: {
             title: "おまとめ先生タイプ",
-            description: "あなたは「おまとめ先生タイプ」！ 情報や思考をスッキリ整理して、誰かに「わかりやすさ」を届ける名手。 構造化や図解が得意で、「3つにまとめるとこう！」が口ぐせになってるかも？ 読んだ人が「なるほど！」とひざを打つ、納得感あふれる投稿があなたの強み。"
+            description: "あなたは「おまとめ先生タイプ」！ 情報や思考をスッキリ整理して、誰かに\"わかりやすさ\"を届ける名手。 構造化や図解が得意で、「3つにまとめるとこう！」が口ぐせになってるかも？ 読んだ人が「なるほど！」とひざを打つ、納得感あふれる投稿があなたの強み。"
         },
         involving: {
             title: "巻き込み天才タイプ",
-            description: "あなたは「巻き込み天才タイプ」！ 気づけばリプ欄が盛り上がり、参加型の投稿がいつの間にかお祭りになる、SNSのムードメーカー。 「みんなー！集合ー！」と自然に声をかけられる空気感は唯一無二。 あなたの呼びかけが、たくさんの人を動かしてる！"
+            description: "あなたは「巻き込み天才タイプ」！ 気づけばリプ欄が盛り上がり、参加型の投稿がいつの間にか\"お祭り\"になる、SNSのムードメーカー。 「みんなー！集合ー！」と自然に声をかけられる空気感は唯一無二。 あなたの呼びかけが、たくさんの人を動かしてる！"
         },
         sniper: {
             title: "一言スナイパータイプ",
-            description: "あなたは「一言スナイパータイプ」！ 言葉数は少なくても、刺さるひと言で印象を残す投稿が得意。 140字以内で「これ、好き」「わかる…！」を生み出す力は、まさにSNSの狙撃手。 「シンプルの美学！」を掲げるあなたのスタイルが、静かに光ってる。"
+            description: "あなたは「一言スナイパータイプ」！ 言葉数は少なくても、\"刺さるひと言\"で印象を残す投稿が得意。 140字以内で「これ、好き」「わかる…！」を生み出す力は、まさにSNSの狙撃手。 「シンプルの美学！」を掲げるあなたのスタイルが、静かに光ってる。"
         }
     };
 
     // チェックボックスの選択数を監視
-let checkedCount = 0;
-checkboxes.forEach(checkbox => {
-    checkbox.addEventListener('change', function (e) {
-        // 明示的にDOMから選択されたチェックボックスの数を数える
-        const currentlyChecked = document.querySelectorAll('input[type="checkbox"]:checked').length;
-        console.log("チェック数:", currentlyChecked); // デバッグ用
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', function (e) {
+            // 明示的にDOMから選択されたチェックボックスの数を数える
+            const currentlyChecked = document.querySelectorAll('input[type="checkbox"]:checked').length;
+            console.log("チェック数:", currentlyChecked); // デバッグ用
 
-        if (this.checked && currentlyChecked > 5) {
-            // 6個目がチェックされようとしたとき → 外してアラート
-            this.checked = false;
-            alert('※チェックは5個までです');
-            return;
-        }
+            if (this.checked && currentlyChecked > 5) {
+                // 6個目がチェックされようとしたとき → 外してアラート
+                this.checked = false;
+                alert('※チェックは5個までです');
+                return;
+            }
 
-        // 選択数の表示を更新 - より明示的に
-        if (selectionStatus) {
-            selectionStatus.textContent = currentlyChecked + "/5 選択中";
-            console.log("更新:", selectionStatus.textContent); // デバッグ用
-        } else {
-            console.error("selection-status要素が見つかりません");
-        }
-        // 診断ボタンの有効／無効切り替え
-        diagnosisButton.disabled = currentlyChecked === 0;
+            // 選択数の表示を更新 - より明示的に
+            if (selectionStatus) {
+                selectionStatus.textContent = currentlyChecked + "/5 選択中";
+                console.log("更新:", selectionStatus.textContent); // デバッグ用
+            } else {
+                console.error("selection-status要素が見つかりません");
+            }
+
+            // 診断ボタンの有効／無効切り替え
+            diagnosisButton.disabled = currentlyChecked === 0;
+        });
     });
-});
 
-    // 診断ボタンのクリックイベントで
-document.getElementById('diagnosis-page').classList.remove('active');
-document.getElementById('result-page').classList.add('active');
+    // 診断ボタンのクリックイベント
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
         
         // 各タイプのスコアを集計
         const scores = {
@@ -110,49 +108,30 @@ document.getElementById('result-page').classList.add('active');
         resultType.textContent = resultData[maxType].title;
         resultDescription.textContent = resultData[maxType].description;
         
-        // チェックリストを隠して結果を表示
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
+        // ページ切り替え - 新しいコード
+        document.getElementById('diagnosis-page').classList.remove('active');
+        document.getElementById('result-page').classList.add('active');
+    });
+
+    // もう一度診断するボタンのイベント
+    retryButton.addEventListener('click', function() {
+        // チェックボックスをすべて解除
+        checkboxes.forEach(checkbox => {
+            checkbox.checked = false;
+            checkbox.disabled = false;
         });
         
-        // 結果を表示
-        resultContainer.classList.remove('hidden');
+        // カウンターをリセット
+        selectionStatus.textContent = '0/5 選択中';
         
-        // チェックリストコンテナをスクロールして表示
-        setTimeout(() => {
-            resultContainer.scrollIntoView({ behavior: 'smooth' });
-        }, 100);
+        // 診断ボタンを無効化
+        diagnosisButton.disabled = true;
+        
+        // ページ切り替え - 新しいコード
+        document.getElementById('result-page').classList.remove('active');
+        document.getElementById('diagnosis-page').classList.add('active');
     });
 
-    // 「もう一度診断する」ボタンのイベントで
-document.getElementById('result-page').classList.remove('active');
-document.getElementById('diagnosis-page').classList.add('active');
-
-    // チェックボックスをすべて解除
-    checkboxes.forEach(checkbox => {
-        checkbox.checked = false;
-        checkbox.disabled = false;
-    });
-    
-    // カウンターをリセット
-    checkedCount = 0;
-    checkedCountDisplay.textContent = '0';
-    selectionStatus.textContent = '0/5 選択中'; // 修正：既に正しい形式になっていますが、明示的に記述
-    
-    // 診断ボタンを無効化
-    diagnosisButton.disabled = true;
-    
-    // 結果を非表示
-    resultContainer.classList.add('hidden');
-    
-    // フォームにスクロール
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
-});
-    
     // 初期状態では診断ボタンを無効化
     diagnosisButton.disabled = true;
 });
