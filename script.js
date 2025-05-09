@@ -10,7 +10,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const retryButton = document.getElementById('retry-button');
 
     // ✅ 初期表示「0/5 選択中」
-    checkedCountDisplay.textContent = '0/5 選択中';
+    - checkedCountDisplay.textContent = currentlyChecked;
+　　+ checkedCountDisplay.textContent = `${currentlyChecked}/5 選択中`;
+
 
     // 診断結果のデータ
     const resultData = {
