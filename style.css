@@ -252,8 +252,8 @@ footer {
 
 .result-image {
   display: block;
-  max-width: 280px;     /* サイズUP */
+  max-width: 350px;     /* サイズUP */
   width: 90%;           /* スマホ対応 */
   height: auto;
-  margin: 12px auto 8px; /* 上12px / 下を8pxに縮める */
+  margin: 8px auto 6px; /* 上12px / 下を8pxに縮める */
 }
