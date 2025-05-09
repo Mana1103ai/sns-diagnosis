@@ -36,26 +36,29 @@ document.addEventListener('DOMContentLoaded', function() {
     // チェックボックスの選択数を監視
     let checkedCount = 0;
     checkboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', function() {
-            if (this.checked) {
-                checkedCount++;
-                // 5つ以上選択したら他のチェックボックスを無効化
-                if (checkedCount >= 5) {
-                    checkboxes.forEach(cb => {
-                        if (!cb.checked) {
-                            cb.disabled = true;
-                        }
-                    });
-                }
-            } else {
-                checkedCount--;
-                // チェックを外したら他のチェックボックスを有効化
-                if (checkedCount < 5) {
-                    checkboxes.forEach(cb => {
-                        cb.disabled = false;
-                    });
-                }
-            }
+    checkbox.addEventListener('change', function () {
+        const currentlyChecked = document.querySelectorAll('input[type="checkbox"]:checked').length;
+
+        if (this.checked && currentlyChecked > 5) {
+            this.checked = false;
+            alert('選べるのは5つまでです！');
+            return;
+        }
+
+        checkedCountDisplay.textContent = currentlyChecked;
+
+        if (currentlyChecked >= 5) {
+            checkboxes.forEach(cb => {
+                if (!cb.checked) cb.disabled = true;
+            });
+        } else {
+            checkboxes.forEach(cb => cb.disabled = false);
+        }
+
+        diagnosisButton.disabled = currentlyChecked === 0;
+    });
+});
+
             // 選択数の表示を更新
             checkedCountDisplay.textContent = checkedCount;
             
