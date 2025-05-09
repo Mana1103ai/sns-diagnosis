@@ -7,91 +7,102 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>あなたのXタイプ<br>ひよっこ🐥診断</h1>
-            <p class="subtitle">あなたのX投稿スタイルを診断します。<br>当てはまる項目を5つまで選んでください。</p>
-        </header>
+    <!-- 診断ページ -->
+    <div id="diagnosis-page" class="page active">
+        <div class="container">
+            <header>
+                <h1>あなたのXタイプ<br>ひよっこ🐥診断</h1>
+                <p class="subtitle">あなたのX投稿スタイルを診断します。<br>当てはまる項目を5つまで選んでください。</p>
+            </header>
 
-        <div class="diagnosis-container">
-            <div class="checklist-container">
-    <h2>チェックリスト</h2>
-    <p class="instruction">※最大5つまで選択できます</p>
-    <div class="selection-status" id="selection-status">0/5 選択中</div>
+            <div class="diagnosis-container">
+                <div class="checklist-container">
+                    <h2>チェックリスト</h2>
+                    <p class="instruction">※最大5つまで選択できます</p>
+                    <div class="selection-status" id="selection-status">0/5 選択中</div>
 
-    <form id="diagnosis-form">
-                    <div class="checklist">
-                        <div class="checklist-item">
-                            <input type="checkbox" id="item1" name="item1" value="positive">
-                            <label for="item1">明るい言葉や前向きな内容をよく投稿する</label>
+                    <form id="diagnosis-form">
+                        <div class="checklist">
+                            <div class="checklist-item">
+                                <input type="checkbox" id="item1" name="item1" value="positive">
+                                <label for="item1">明るい言葉や前向きな内容をよく投稿する</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" id="item2" name="item2" value="emotional">
+                                <label for="item2">感情や心の動きを、物語のように表現することが多い</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" id="item3" name="item3" value="organizer">
+                                <label for="item3">情報を整理して、構造化した投稿が得意</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" id="item4" name="item4" value="involving">
+                                <label for="item4">みんなを巻き込む質問や企画をよく投稿する</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" id="item5" name="item5" value="sniper">
+                                <label for="item5">短い言葉で的確に表現するのが好き</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" id="item6" name="item6" value="positive">
+                                <label for="item6">いいねやリプをたくさんする</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" id="item7" name="item7" value="emotional">
+                                <label for="item7">日常の小さな出来事から気づきを見つけて投稿する</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" id="item8" name="item8" value="organizer">
+                                <label for="item8">○選や○○まとめ！など、まとめタイプの投稿をよくする</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" id="item9" name="item9" value="involving">
+                                <label for="item9">リプ欄や返信が盛り上がる投稿が多い</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" id="item10" name="item10" value="sniper">
+                                <label for="item10">無駄な言葉を削ぎ落として投稿することが多い</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" id="item11" name="item11" value="positive">
+                                <label for="item11">ポジティブなハッシュタグをよく使用する</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" id="item12" name="item12" value="emotional">
+                                <label for="item12">自分の感情を素直に表現した投稿が多い</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" id="item13" name="item13" value="organizer">
+                                <label for="item13">図や表を使って説明するのが好き</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" id="item14" name="item14" value="involving">
+                                <label for="item14">「みんなはどう思う？」と意見を求めることが多い</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" id="item15" name="item15" value="sniper">
+                                <label for="item15">一言で的確に状況を表現できる</label>
+                            </div>
                         </div>
-                        <div class="checklist-item">
-                            <input type="checkbox" id="item2" name="item2" value="emotional">
-                            <label for="item2">感情や心の動きを、物語のように表現することが多い</label>
-                        </div>
-                        <div class="checklist-item">
-                            <input type="checkbox" id="item3" name="item3" value="organizer">
-                            <label for="item3">情報を整理して、構造化した投稿が得意</label>
-                        </div>
-                        <div class="checklist-item">
-                            <input type="checkbox" id="item4" name="item4" value="involving">
-                            <label for="item4">みんなを巻き込む質問や企画をよく投稿する</label>
-                        </div>
-                        <div class="checklist-item">
-                            <input type="checkbox" id="item5" name="item5" value="sniper">
-                            <label for="item5">短い言葉で的確に表現するのが好き</label>
-                        </div>
-                        <div class="checklist-item">
-                            <input type="checkbox" id="item6" name="item6" value="positive">
-                            <label for="item6">いいねやリプをたくさんする</label>
-                        </div>
-                        <div class="checklist-item">
-                            <input type="checkbox" id="item7" name="item7" value="emotional">
-                            <label for="item7">日常の小さな出来事から気づきを見つけて投稿する</label>
-                        </div>
-                        <div class="checklist-item">
-                            <input type="checkbox" id="item8" name="item8" value="organizer">
-                            <label for="item8">○選や○○まとめ！など、まとめタイプの投稿をよくする</label>
-                        </div>
-                        <div class="checklist-item">
-                            <input type="checkbox" id="item9" name="item9" value="involving">
-                            <label for="item9">リプ欄や返信が盛り上がる投稿が多い</label>
-                        </div>
-                        <div class="checklist-item">
-                            <input type="checkbox" id="item10" name="item10" value="sniper">
-                            <label for="item10">無駄な言葉を削ぎ落として投稿することが多い</label>
-                        </div>
-                        <div class="checklist-item">
-                            <input type="checkbox" id="item11" name="item11" value="positive">
-                            <label for="item11">ポジティブなハッシュタグをよく使用する</label>
-                        </div>
-                        <div class="checklist-item">
-                            <input type="checkbox" id="item12" name="item12" value="emotional">
-                            <label for="item12">自分の感情を素直に表現した投稿が多い</label>
-                        </div>
-                        <div class="checklist-item">
-                            <input type="checkbox" id="item13" name="item13" value="organizer">
-                            <label for="item13">図や表を使って説明するのが好き</label>
-                        </div>
-                        <div class="checklist-item">
-                            <input type="checkbox" id="item14" name="item14" value="involving">
-                            <label for="item14">「みんなはどう思う？」と意見を求めることが多い</label>
-                        </div>
-                        <div class="checklist-item">
-                            <input type="checkbox" id="item15" name="item15" value="sniper">
-                            <label for="item15">一言で的確に状況を表現できる</label>
-                        </div>
-                    </div>
-                    <button type="submit" id="diagnosis-button">診断する</button>
-                </form>
+                        <button type="submit" id="diagnosis-button">診断する</button>
+                    </form>
+                </div>
             </div>
         </div>
+    </div>
 
-        <div id="result-container" class="result-container hidden">
-            <h2>診断結果</h2>
-            <div id="result-type" class="result-type"></div>
-            <div id="result-description" class="result-description"></div>
-            <button id="retry-button">もう一度診断する</button>
+    <!-- 結果ページ -->
+    <div id="result-page" class="page">
+        <div class="container">
+            <header>
+                <h1>診断結果</h1>
+            </header>
+            
+            <div class="result-container">
+                <div id="result-type" class="result-type"></div>
+                <div id="result-description" class="result-description"></div>
+                <button id="retry-button">もう一度診断する</button>
+            </div>
         </div>
     </div>
 
