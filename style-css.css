@@ -1,0 +1,217 @@
+/* 全体のスタイル */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+}
+
+body {
+    background-color: #FFF5F1;
+    color: #333333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 20px 0;
+    border-bottom: 2px solid #FF66A5;
+}
+
+h1 {
+    color: #FF66A5;
+    margin-bottom: 10px;
+    font-size: 2.2rem;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+/* チェックリストのスタイル */
+.diagnosis-container {
+    background-color: white;
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+.checklist-container h2 {
+    color: #FF66A5;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.instruction {
+    text-align: center;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+    color: #666;
+}
+
+.counter {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #FF66A5;
+}
+
+.checklist {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.checklist-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.checklist-item:hover {
+    background-color: #FFF5F1;
+    border-color: #FF66A5;
+}
+
+.checklist-item input[type="checkbox"] {
+    margin-right: 10px;
+    width: 18px;
+    height: 18px;
+    accent-color: #FF66A5;
+}
+
+.checklist-item label {
+    flex: 1;
+    cursor: pointer;
+}
+
+button {
+    background-color: #FFD166;
+    color: #333333;
+    border: none;
+    padding: 12px 25px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 30px;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    background-color: #FFBD33;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* 結果表示エリアのスタイル */
+.result-container {
+    background-color: white;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-top: 30px;
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.5s ease;
+}
+
+.result-container.hidden {
+    display: none;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.result-container h2 {
+    color: #FF66A5;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+}
+
+.result-type {
+    font-size: 1.6rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #FF66A5;
+    padding: 10px 0;
+    border-bottom: 2px dashed #FFD166;
+}
+
+.result-description {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 25px;
+    white-space: pre-line;
+    text-align: left;
+    padding: 0 10px;
+}
+
+#retry-button {
+    margin-top: 20px;
+}
+
+/* フッタースタイル */
+footer {
+    text-align: center;
+    padding: 20px 0;
+    color: #777;
+    font-size: 0.8rem;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+    
+    .diagnosis-container {
+        padding: 20px 15px;
+    }
+    
+    h1 {
+        font-size: 1.8rem;
+    }
+    
+    .result-type {
+        font-size: 1.4rem;
+    }
+    
+    .result-description {
+        font-size: 1rem;
+    }
+}
+
+@media (min-width: 576px) {
+    .checklist {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+}
