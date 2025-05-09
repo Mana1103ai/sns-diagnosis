@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
         positive: {
             title: "ポジティブ無双タイプ",
             description: "あなたは「ポジティブ無双タイプ」！ 投稿に自然と明るさがにじみ出る、SNSの太陽みたいな存在。 「ま、いっか！」の精神で、前向きな言葉を軽やかに放ち、誰かの1日をちょっと良くしてる。 迷ってる人をふっと笑わせる天才。あなたの元気が、誰かの元気になってるよ！",
-      image: "images/poji.jpg"
+      image:"images/poji.jpg"
         },
         emotional: {
             title: "感情脚本家タイプ",
