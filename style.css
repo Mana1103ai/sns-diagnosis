@@ -300,3 +300,24 @@ footer {
         padding: 40px 0;
     }
 }
+
+/* トップ画像のスタイル */
+.top-image-container {
+    text-align: center;
+    margin: 20px 0 30px;
+    width: 100%;
+}
+
+.top-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px; /* 任意：角を丸くする */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 任意：影をつける */
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .top-image-container {
+        margin: 15px 0 25px;
+    }
+}
