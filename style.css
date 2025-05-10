@@ -301,23 +301,35 @@ footer {
     }
 }
 
-/* トップ画像のスタイル */
-.top-image-container {
+/* ロゴ画像のスタイル（修正版） */
+.logo-container {
     text-align: center;
-    margin: 20px 0 30px;
+    margin: 20px 0;
     width: 100%;
+    overflow: hidden; /* はみ出た部分を非表示に */
 }
 
-.top-image {
-    max-width: 100%;
-    height: auto;
-    border-radius: 10px; /* 任意：角を丸くする */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 任意：影をつける */
+.logo-image {
+    max-width: 100%; /* 幅を親要素に合わせる */
+    height: auto; /* 縦横比を維持 */
+    display: block; /* ブロック要素として表示 */
+    margin: 0 auto; /* 中央揃え */
 }
 
-/* レスポンシブ対応 */
+/* スマホ表示の調整 */
 @media (max-width: 768px) {
-    .top-image-container {
-        margin: 15px 0 25px;
+    .logo-container {
+        margin: 10px 0; /* 余白を少し小さく */
+    }
+    
+    .logo-image {
+        width: 90%; /* コンテナより少し小さくする */
+    }
+}
+
+/* さらに小さい画面用 */
+@media (max-width: 480px) {
+    .logo-image {
+        width: 85%; /* さらに小さく */
     }
 }
