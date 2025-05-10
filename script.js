@@ -63,93 +63,105 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             // 診断ボタンの有効／無効切り替え
-            diagnosisButton.disabled = currentlyChecked === 0;
+diagnosisButton.disabled = currentlyChecked === 0;
         });
     });
 
-    // 診断ボタンのクリックイベント
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
+// 診断ボタンのクリックイベント
+form.addEventListener('submit', function(e) { 
+    e.preventDefault();
         
-        // 各タイプのスコアを集計
-        const scores = {
-            positive: 0,
-            emotional: 0,
-            organizer: 0,
-            involving: 0,
-            sniper: 0
-        };
-
-        checkboxes.forEach(checkbox => {
-            if (checkbox.checked) {
-                scores[checkbox.value]++;
-            }
-        });
-
-        // 最高スコアのタイプを特定
-        let maxScore = 0;
-        let maxType = '';
-        
-        for (const type in scores) {
-            if (scores[type] > maxScore) {
-                maxScore = scores[type];
-                maxType = type;
-            }
+    // 各タイプのスコアを集計
+    const scores = {
+        positive: 0,
+        emotional: 0,
+        organizer: 0,
+        involving: 0,
+        sniper: 0
+    };
+    
+    checkboxes.forEach(checkbox => {
+        if (checkbox.checked) {
+            scores[checkbox.value]++;
         }
-
-        // 結果がタイなら、ランダムに一つ選ぶ
-        const tiedTypes = [];
-        for (const type in scores) {
-            if (scores[type] === maxScore) {
-                tiedTypes.push(type);
-            }
+    });
+    
+    // 最高スコアのタイプを特定
+    let maxScore = 0;
+    let maxType = '';
+    
+    for (const type in scores) {
+        if (scores[type] > maxScore) {
+            maxScore = scores[type];
+            maxType = type;
         }
-        
-        if (tiedTypes.length > 1) {
-            maxType = tiedTypes[Math.floor(Math.random() * tiedTypes.length)];
+    }
+    
+    // 結果がタイなら、ランダムに一つ選ぶ
+    const tiedTypes = [];
+    for (const type in scores) {
+        if (scores[type] === maxScore) {
+            tiedTypes.push(type);
         }
-
-        // 画像の表示処理
+    }
+    
+    if (tiedTypes.length > 1) {
+        maxType = tiedTypes[Math.floor(Math.random() * tiedTypes.length)];
+    }
+    
+    // 画像の表示処理
     const existingImage = document.querySelector('.result-image');
     if (existingImage) {
         existingImage.remove(); // 前回表示の画像があれば削除
     }
-
+    
     const resultImage = document.createElement('img');
     resultImage.src = resultData[maxType].image;
     resultImage.alt = resultData[maxType].title;
     resultImage.classList.add('result-image');
-
     resultType.after(resultImage); // タイトルの直後に画像を挿入
-
-        // 結果を表示
-        resultType.textContent = resultData[maxType].title;
-        resultDescription.textContent = resultData[maxType].description;
-        
-        // ページ切り替え - 新しいコード
-        document.getElementById('diagnosis-page').classList.remove('active');
-        document.getElementById('result-page').classList.add('active');
-    });
-
-    // もう一度診断するボタンのイベント
-    retryButton.addEventListener('click', function() {
-        // チェックボックスをすべて解除
-        checkboxes.forEach(checkbox => {
-            checkbox.checked = false;
-            checkbox.disabled = false;
-        });
-        
-        // カウンターをリセット
-        selectionStatus.textContent = '0/5 選択中';
-        
-        // 診断ボタンを無効化
-        diagnosisButton.disabled = true;
-        
-        // ページ切り替え - 新しいコード
-        document.getElementById('result-page').classList.remove('active');
-        document.getElementById('diagnosis-page').classList.add('active');
-    });
-
-    // 初期状態では診断ボタンを無効化
-    diagnosisButton.disabled = true;
+    
+    // 結果を表示
+    resultType.textContent = resultData[maxType].title;
+    
+    // 説明文を取得
+    let description = resultData[maxType].description;
+    
+    // タイプ名を太字かつピンク色に
+    description = description.replace(/「ポジティブ無双タイプ」/g, '<strong class="highlight-pink">「ポジティブ無双タイプ」</strong>');
+    description = description.replace(/「感情脚本家タイプ」/g, '<strong class="highlight-pink">「感情脚本家タイプ」</strong>');
+    description = description.replace(/「おまとめ先生タイプ」/g, '<strong class="highlight-pink">「おまとめ先生タイプ」</strong>');
+    description = description.replace(/「巻き込み天才タイプ」/g, '<strong class="highlight-pink">「巻き込み天才タイプ」</strong>');
+    description = description.replace(/「一言スナイパータイプ」/g, '<strong class="highlight-pink">「一言スナイパータイプ」</strong>');
+    
+    // HTMLとして設定
+    resultDescription.innerHTML = description;
+    
+  // ページ切り替え - 新しいコード
+document.getElementById('diagnosis-page').classList.remove('active');
+document.getElementById('result-page').classList.add('active');
 });
+
+// もう一度診断するボタンのイベント
+retryButton.addEventListener('click', function() {
+    // チェックボックスをすべて解除
+    checkboxes.forEach(checkbox => {
+        checkbox.checked = false;
+        checkbox.disabled = false;
+    });
+    
+    // カウンターをリセット
+    selectionStatus.textContent = '0/5 選択中';
+    
+    // 診断ボタンを無効化
+    diagnosisButton.disabled = true;
+    
+    // ページ切り替え - これが欠けています
+    document.getElementById('result-page').classList.remove('active');
+    document.getElementById('diagnosis-page').classList.add('active');
+});
+
+// 初期状態では診断ボタンを無効化
+diagnosisButton.disabled = true;
+
+}); // DOMContentLoadedイベントを閉じる最後の括弧
