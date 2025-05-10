@@ -257,3 +257,9 @@ footer {
   height: auto;
   margin: 8px auto 6px; /* 上12px / 下を8pxに縮める */
 }
+
+/* 強調したいテキストのスタイル */
+.highlight-pink {
+    color: #FF66A5; /* ピンク色 - 見出しと同じ色 */
+    font-weight: bold; /* 太字 */
+}
