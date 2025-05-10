@@ -105,6 +105,29 @@
             <div class="result-container">
                 <div id="result-type" class="result-type"></div>
                 <div id="result-description" class="result-description"></div>
+                
+                <!-- シェアボタンエリアを追加 -->
+                <div class="share-buttons">
+                    <p class="share-text">診断結果をシェアする</p>
+                    <div class="share-button-container">
+                        <!-- Xシェアボタン -->
+                        <a href="#" id="share-x" class="share-button share-x" target="_blank">
+                            <svg viewBox="0 0 24 24" width="24" height="24">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" fill="currentColor"></path>
+                            </svg>
+                            <span>Xでシェア</span>
+                        </a>
+                        
+                        <!-- LINEシェアボタン -->
+                        <a href="#" id="share-line" class="share-button share-line" target="_blank">
+                            <svg viewBox="0 0 24 24" width="24" height="24">
+                                <path d="M21.727 10.908c0-4.38-4.392-7.944-9.79-7.944-5.4 0-9.795 3.564-9.795 7.944 0 3.924 3.492 7.212 8.205 7.836.318.072.756.222.867.51.1.258.066.663.032.924 0 0-.12.726-.144.882-.048.258-.21.996.87.546.294-.15 1.464-.864 2.004-1.476 3.717-2.508 5.754-5.07 5.754-9.222z" fill="currentColor"></path>
+                            </svg>
+                            <span>LINEでシェア</span>
+                        </a>
+                    </div>
+                </div>
+                
                 <button id="retry-button">もう一度診断する</button>
             </div>
         </div>
