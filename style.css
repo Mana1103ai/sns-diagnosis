@@ -333,3 +333,60 @@ footer {
         width: 85%; /* さらに小さく */
     }
 }
+
+/* シェアボタンのスタイル */
+.share-buttons {
+    margin: 30px 0;
+    text-align: center;
+}
+
+.share-text {
+    margin-bottom: 15px;
+    font-weight: bold;
+    color: #666;
+}
+
+.share-button-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.share-button {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    border-radius: 30px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: opacity 0.3s ease;
+}
+
+.share-button:hover {
+    opacity: 0.8;
+}
+
+.share-button svg {
+    margin-right: 8px;
+}
+
+.share-x {
+    background-color: #000;
+}
+
+.share-line {
+    background-color: #06C755;
+}
+
+/* スマホ表示の調整 */
+@media (max-width: 480px) {
+    .share-button-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .share-button {
+        justify-content: center;
+    }
+}
