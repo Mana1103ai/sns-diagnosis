@@ -136,10 +136,21 @@ form.addEventListener('submit', function(e) {
     
     // HTMLとして設定
     resultDescription.innerHTML = description;
+
+    // シェアURLの設定 - ここから追加
+    const websiteUrl = window.location.href.split('?')[0]; // クエリパラメータを除いたURL
+    const shareText = `私は「${resultData[maxType].title}」でした！ あなたはどのタイプ？`;
     
-  // ページ切り替え - 新しいコード
-document.getElementById('diagnosis-page').classList.remove('active');
-document.getElementById('result-page').classList.add('active');
+    // Xのシェアリンク設定
+    document.getElementById('share-x').href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(websiteUrl)}`;
+    
+    // LINEのシェアリンク設定
+    document.getElementById('share-line').href = `https://line.me/R/msg/text/?${encodeURIComponent(shareText + ' ' + websiteUrl)}`;
+    // ここまで追加
+    
+    // ページ切り替え - 新しいコード
+    document.getElementById('diagnosis-page').classList.remove('active');
+    document.getElementById('result-page').classList.add('active');
 });
 
 // もう一度診断するボタンのイベント
@@ -156,7 +167,7 @@ retryButton.addEventListener('click', function() {
     // 診断ボタンを無効化
     diagnosisButton.disabled = true;
     
-    // ページ切り替え - これが欠けています
+    // ページ切り替え 
     document.getElementById('result-page').classList.remove('active');
     document.getElementById('diagnosis-page').classList.add('active');
 });
